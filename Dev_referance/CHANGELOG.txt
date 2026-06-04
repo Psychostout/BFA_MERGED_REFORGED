@@ -1,0 +1,386 @@
+================================================================================
+                         BFA 8.3.7 MERGE CHANGELOG
+           TrinityCore Battle for Azeroth — Revised Merge Project
+================================================================================
+
+Version:    0.2.0 (Revised Strategy)
+Build:      8.3.7.35662 (Build 35662)
+Date:       June 5, 2026
+Status:     Strategy Revised — TrinityCore Official Base + tswow + BfaCore
+
+================================================================================
+                            CHANGELOG HISTORY
+================================================================================
+
+[2026-06-05] - Version 0.2.0 (Revised Strategy)
+--------------------------------------------
+
+STRATEGIC REVISION (MAJOR):
+
+  Previous Strategy (v0.1.0-dev):
+    → BfaCore-Reforged as PRIMARY BASE
+    → Port tswow features manually
+    → Archive TrinityCore lineage as reference
+
+  New Strategy (v0.2.0):
+    → TrinityCore Official 8.3.7/35662 tag as CANONICAL BASE
+    → Git merge tswow/TrinityCore (direct merge — shared ancestry)
+    → Manual port BfaCore-Reforged BFA content
+    → Archive CWWEB/wowlegions (same as TrinityCore official)
+
+  Why the revision?
+    + TrinityCore official is the canonical upstream (10.6k stars)
+    + tswow is directly git-mergeable (shared TrinityCore ancestry)
+    + GPL v2 license (more flexible than BfaCore's AGPL v3)
+    + Direct git merge with tswow gives multivendor, multitrainer,
+      dressnpcs, macOS fixes, active development
+    + Cleaner foundation than BfaCore's independent codebase
+    + Still get all BFA content via BfaCore manual port
+
+TRINITYCORE OFFICIAL VERIFICATION:
+
+  [NEW] Cloned TrinityCore/TrinityCore tag 8.3.7/35662
+    - URL: https://github.com/TrinityCore/TrinityCore
+    - Tag: 8.3.7/35662 at commit 16b39a448acbe8ace88550a367be8e6bf565b00d
+    - Clone: /home/user/trinitycore-official-bfa/
+    - .cpp files: 658
+    - Total C++ lines: 305,862
+    - 10,600 stars, 6,300 forks
+    - Last commit: Oct 21, 2020 (Shauren — Transmog hidden appearances)
+    - Branches: 3.3.5, cata_classic, master, wotlk_classic (4 branches)
+    - Tags: 147 total
+    - ⚠️ NOTE: 8.3.7/35662 is a TAG not a branch — archived release
+
+  [CONFIRMED] TrinityCore official IS the same as CWWEB/wowlegions bfa:
+    - Same commit hash: 16b39a448acbe8ace88550a367be8e6bf565b00d
+    - Same 33,598 commits
+    - Same last commit date (Oct 21, 2020)
+    - Same author (Shauren)
+    - BFA content: ZERO — same as CWWEB/wowlegions (no dungeons, raids, zones)
+
+  [NEW] TrinityCore official tag analysis:
+    - Custom/ directory: ONLY custom_script_loader.cpp (25 lines) — no actual scripts
+    - scripts/ subdirs: Argus, BrokenIsles, Commands, Custom, EasternKingdoms,
+      Events, Kalimdor, Maelstrom, Northrend, OutdoorPvP, Outland, Pet, Spells, World
+    - BFA directories: NONE (no KulTiras, no Zandalar, no Nyalotha, no Nazjatar)
+    - License: GPL v2 (flexible)
+    - Status: Canonical upstream — best possible foundation
+
+FULL THREE-WAY COMPARISON (Updated):
+
+  TrinityCore Official vs tswow vs BfaCore-Reforged:
+
+  [.cpp file counts]
+    TrinityCore Official: 658
+    BfaCore-Reforged:    145 (snapshot) / 1,338 (reported)
+    tswow:               77 (snapshot) / 629 (reported)
+    [Note: workspace snapshots may be partial — verify on full clone]
+
+  [Total C++ lines]
+    TrinityCore Official: 305,862
+    BfaCore-Reforged:    23,908 (snapshot) / 870,388 (reported)
+    tswow:               14,139 (snapshot) / 299,261 (reported)
+
+  [BFA dungeon/raid content]
+    TrinityCore Official: 0 files, 0 lines
+    BfaCore-Reforged:    ALL (KulTiras, Zandalar, Nyalotha, Nazjatar, etc.)
+    tswow:               0 files, 0 lines
+
+TSWOW UNIQUE CONTENT (Git Merge Additions):
+
+  [NEW] Verified via clone: /home/user/tswow-bfa/
+  [NEW] Shared expansions with TrinityCore official:
+    EasternKingdoms: 14 files, 2,690 lines (10 shared, 4 unique)
+      Unique: boss_mr_smite, boss_vancleef, deadmines.cpp, instance_deadmines.cpp
+    Kalimdor: 18 files, 3,184 lines (all shared, 0 unique)
+    Northrend: 7 files, 1,285 lines (2 shared, 5 unique)
+      Unique: boss_archavon, boss_emalon, boss_koralon, boss_toravon,
+              instance_vault_of_archavon.cpp
+    Outland: 34 files, 6,823 lines (19 shared, 15 unique)
+      Unique: Gruul's Lair (2 bosses), The Botanica (5 bosses),
+              Tempest Keep areas (Arcatraz, Botanica, Mechanar)
+
+  [NEW] tswow Custom/ directory structure:
+    Custom/DressNPCs/       — NPC dress/outfit system
+    Custom/Multivendor/     — Multi-vendor functionality
+    Custom/Player and Item Gossip/ — Gossip scripts
+    Custom/Transmog/        — Transmog system
+    Custom/multitrainer/    — Multi-trainer functionality
+    custom_script_loader.cpp — script registrations
+
+  [CONFIRMED] tswow is direct fork of TrinityCore/TrinityCore ✅
+    - 14,443 commits ahead of TrinityCore master
+    - Active development (Jan 27, 2026 — 5 months ago)
+    - Direct git merge compatible with TrinityCore official
+    - NOT git-merge compatible with BfaCore-Reforged
+
+BFACORE-REFORGED CONTENT (Manual Port Required):
+
+  [CONFIRMED] Verified via clone: /home/user/bfcore-reforged/
+
+  [REVISED] BfaCore-Reforged BFA Content:
+    KulTiras Dungeons:
+      ✅ FreeHold (4 boss files, full implementation)
+      ✅ Tol'Dagor (4 boss files, full implementation)
+      ✅ SiegeOfBoralus (4 boss files, full implementation)
+      ✅ WaycrestManor (5 boss files, full implementation)
+      ✅ ShrineOfTheStorm (4 boss files, full implementation)
+      ✅ Operation Mechagon (2 boss files)
+    Zandalar Dungeons:
+      ✅ Atal'Dazar (5 boss files, full implementation)
+      ✅ King's Rest (4 boss files, full implementation)
+      ✅ TempleOfSethraliss (4 boss files, full implementation)
+      ✅ TheMotherlode (4 boss files, full implementation)
+      ✅ TheUnderrot (4 boss files, full implementation)
+      ✅ Uldir (8 boss files, full implementation)
+    Nyalotha Raid: ✅ 12 boss scripts (11,665 to 31,538 lines each)
+    Nazjatar: ✅ zone_nazjatar.cpp (25,585 lines) + EternalPalace/
+    AlliedRaces: ✅ allied_races.cpp (7,144 lines)
+    BrawlersGuild: ✅ 7 boss rank files (10,683 to 23,122 lines)
+    Scenarios: ✅ 9 BFA scenario scripts
+
+  [CONFIRMED] BfaCore is INDEPENDENT codebase ✅
+    - No shared git history with TrinityCore official
+    - No shared git history with tswow
+    - Manual port required (not git mergeable)
+
+ASHAMANECORE INVESTIGATION (COMPLETED):
+
+  [CONFIRMED] AshamaneProject/AshamaneCore:
+    - BFA branch: DOES NOT EXIST — never pushed
+    - Last activity: Feb 16, 2021 (~5 years ago)
+    - Community: "dead for years" (Reddit Sep 2025)
+    - ADB_820.00 tag exists (database release, no code branch)
+
+  [CONFIRMED] WoWEmulationProject/AshamaneCoreBFA:
+    - Has 8.3.7 branch at commit add8404
+    - 68,284 commits
+    - 1,125 .cpp files
+    - BUT: 95%+ BFA dungeon scripts are STUB FILES (24 lines each)
+    - Only real content: zone_zuldazar.cpp (432 lines),
+      zone_tiragarde_sound.cpp (1,163 lines),
+      boss_aqusirr.cpp (113 lines), Stormwind Extraction scenario (470 lines)
+    - VERDICT: NOT a viable source for BFA dungeon content
+
+  [CONFIRMED] fluxurion/AshamaneCoreBFA:
+    - EXISTS but repo is now DELETED (404 error)
+    - Had 68,290 commits, built with VS2022
+
+GITHUB SCRIPT SOURCE MAP (All Expansions):
+
+  Vanilla (1.x):
+    - mangos/ScriptDev3 (CMangos only)
+    - vmangos/core (vmangos only)
+    - cmangos/classic-db (CMangos only)
+    - ACID-Scripts (CMangos EventAI)
+
+  TBC (2.x):
+    - ACID-Scripts/TBC (CMangos EventAI)
+    - cmangos/tbc-db, cmangos/mangos-tbc (CMangos only)
+
+  WotLK (3.x):
+    - ACID-Scripts/WOTLK (CMangos EventAI)
+    - cmangos/wotlk-db, cmangos/mangos-wotlk (CMangos only)
+    - AzerothCore/azerothcore-wotlk (TrinityCore-compatible)
+    - DavidMacalaster/Solocraft (AzerothCore/TrinityCore 3.3.5a)
+    - StygianTheBest/AzerothCore-Content (AzerothCore modules)
+
+  Cataclysm (4.x):
+    - mikadmin/CataclysmScripts (TrinityCore 4.3.4, ArkCore/TrilliumEMU)
+    - The-Cataclysm-Preservation-Project/TrinityCore (TrinityCore 4.3.4)
+    - Nuppi repos (TrinityCore 4.3.4 SmartAI + C++)
+
+  MoP (5.x):
+    - Palabola/TrinityCore-MOP-5.1.0 (TrinityCore MoP)
+    - vhiperdev/WoW-Patchs (TrinityCore MoP scripts)
+    - Nuppi (SmartAI Lab MoP)
+
+  WoD (6.x):
+    - Magic-Storm/Draenor-Core (6.2.3, most complete WoD scripts)
+    - dio85 repos (TrinityCore 6.2.4 forks)
+
+  Legion (7.x):
+    - AshamaneProject/AshamaneCore (7.3.5.26972, dead since 2021)
+    - Varjgard/LegionCore (7.3.5, "most complete")
+    - Legends-of-Azeroth/TrinityCore735 (7.3.5 community fork)
+    - conan513/SingleCore_TC (AshamaneCore + patches)
+
+  BFA (8.x):
+    - TrinityCore/TrinityCore 8.3.7/35662 tag (CANONICAL BASE)
+    - Titans-Project/BfaCore-Reforged (COMPLETE BFA CONTENT)
+    - tswow/TrinityCore (ACTIVE DEVELOPMENT)
+    - CWWEB/LegacyCore bfa (SAME AS TrinityCore official)
+    - wowlegions/LegacyCore-1 bfa (SAME AS TrinityCore official)
+
+IDENTICAL REPOS CONFIRMED (Updated):
+
+  ⚠️ TrinityCore official 8.3.7/35662 tag === CWWEB bfa === wowlegions bfa
+  ⚠️ All at commit 16b39a448acbe8ace88550a367be8e6bf565b00d
+  ⚠️ All 658 .cpp scripts are identical
+  ⚠️ All share 33,598 commits, same author, same date (Oct 21, 2020)
+  ⚠️ All have ZERO BFA dungeon/raid/zone content
+
+MERGE COMPATIBILITY MATRIX (Updated):
+
+  TrinityCore Official + tswow:                ✅ DIRECT GIT MERGE (shared ancestry)
+  TrinityCore Official + CWWEB/wowlegions:     ✅ COMPATIBLE (same commit)
+  TrinityCore Official + BfaCore:              ❌ NOT GIT-MERGEABLE (diverged paths)
+  tswow + CWWEB/wowlegions:                    ✅ GIT-MERGEABLE (shared TrinityCore ancestry)
+  tswow + BfaCore:                             ❌ NOT GIT-MERGEABLE (diverged paths)
+  tswow + TrinityCore Official BFA branch:     ⚠️ IDENTICAL — nothing to merge
+
+REVISED EXECUTION PLAN (NEW):
+
+  Step 1: Clone TrinityCore 8.3.7/35662 tag as base
+    → Create new working branch
+    → Establish canonical foundation
+
+  Step 2: Git merge tswow/8.3.7 into working branch
+    → Direct git merge (compatible paths)
+    → Adds: multivendor, multitrainer, dressnpcs, transmog,
+           player/item gossip, Gruul's Lair, The Botanica,
+           Vault of Archavon, Deadmines, macOS fixes
+    → Resolve conflicts in custom_script_loader.cpp, transmog implementations
+
+  Step 3: Manual port BfaCore-Reforged BFA content
+    → Copy KulTiras/ (6 dungeons), Zandalar/ (6 dungeons)
+    → Copy Nyalotha/ (12 boss scripts), Nazjatar/, AlliedRaces/
+    → Copy BrawlersGuild/, Scenarios/
+    → Add script registrations to custom_script_loader.cpp
+    → ⚠️ AGPL v3: merged product must remain open source
+
+  Step 4: Transmog comparison and resolution
+    → Compare TrinityCore official, tswow, and BfaCore implementations
+    → Keep most complete, merge features as needed
+
+  Step 5: Compile and test
+    → Build after tswow merge
+    → Build after each BfaCore port phase
+    → Runtime test BFA content
+
+DOCUMENTATION UPDATES:
+
+  + BFA_README.txt rewritten for Revised Strategy
+  + CHANGELOG.txt rewritten for Revised Strategy
+  + New base: TrinityCore Official (canonical upstream)
+  + New merge target: tswow (git merge)
+  + New port source: BfaCore-Reforged (manual port)
+  + AGPL v3 license warning documented
+  + GitHub script source map documented for all expansions
+
+================================================================================
+                            PENDING TASKS
+================================================================================
+
+[ ] Create new working branch from TrinityCore 8.3.7/35662 tag
+[ ] Add tswow as git remote
+[ ] Git merge tswow/8.3.7 branch
+[ ] Resolve merge conflicts (custom_script_loader.cpp, transmog)
+[ ] Verify compilation after tswow merge
+[ ] Port BfaCore KulTiras dungeons (FreeHold, TolDagor, SiegeOfBoralus, WaycrestManor, ShrineOfTheStorm, OperationMechagon)
+[ ] Port BfaCore Zandalar dungeons (AtalDazar, King'sRest, TempleOfSethraliss, TheMotherlode, TheUnderrot, Uldir)
+[ ] Port BfaCore Nyalotha raid (12 boss scripts)
+[ ] Port BfaCore Nazjatar zone and Eternal Palace
+[ ] Port BfaCore AlliedRaces
+[ ] Port BfaCore BrawlersGuild
+[ ] Port BfaCore BFA Scenarios
+[ ] Resolve transmog three-way comparison
+[ ] Verify compilation after each BfaCore port phase
+[ ] Runtime test BFA dungeons (at least 1 per region)
+[ ] Runtime test Nyalotha raid
+[ ] Runtime test Nazjatar zone
+[ ] Check AGPL v3 obligations from BfaCore content
+[ ] Publish merged repository to GitHub
+[ ] Update documentation with final results
+
+================================================================================
+                         KNOWN ISSUES / RISKS
+================================================================================
+
+[CRITICAL] TrinityCore Official is a TAG
+  8.3.7/35662 is archived tag, not a branch
+  Must create new branch from tag for all work
+  Cannot push changes back to the tag
+
+[CRITICAL] AGPL v3 License from BfaCore
+  BfaCore uses AGPL v3 (not GPL v2)
+  Any ported content requires AGPL v3 compliance
+  Closed-source distribution is NOT permitted for BfaCore-derived code
+  Mitigation: Only use if open-source distribution is acceptable
+
+[HIGH] tswow Git Merge Conflicts
+  tswow has 14,443 commits ahead of TrinityCore master
+  Conflicts expected in custom_script_loader.cpp and overlapping scripts
+  Manual conflict resolution required
+
+[HIGH] Manual Port Required for BfaCore
+  BfaCore has no shared git history with TrinityCore
+  Cannot use git merge — must manually copy files and register scripts
+  More effort than git merge
+
+[MEDIUM] Transmog Implementation Conflicts
+  Three different transmog implementations across sources
+  Duplicate tables or conflicting logic possible
+  Mitigation: Formal three-way comparison before committing
+
+[MEDIUM] BFA Script Quality Unverified
+  BfaCore dungeon/raid scripts not runtime-tested
+  May contain bugs, missing phases, incorrect boss behaviors
+
+[LOW] No Community Visibility
+  Merged product starts fresh — no GitHub stars or forks
+  User must publish and promote the merged repository
+
+================================================================================
+                          COMMIT CONVENTIONS
+================================================================================
+
+Format: [DATE] - Version X.X.X
+--------------------------------
+[CHANGE TYPE]: Description
+  - Detail line
+
+Change Types:
+  + ADDED     - New feature or capability
+  - REMOVED   - Removed feature or capability
+  * CHANGED   - Modified existing functionality
+  ! FIXED     - Bug fix
+  # REFACTOR  - Code refactoring (no functional change)
+  $ SECURITY  - Security-related change
+  % PERF      - Performance improvement
+  @ DEPRECATED - Deprecation notice
+  ? NOTE      - Miscellaneous note
+
+================================================================================
+                              VERSION LOG
+================================================================================
+
+v0.2.0  (2026-06-05) — Revised Strategy
+  - Strategy revised from Hybrid to TrinityCore Official Base
+  - TrinityCore official 8.3.7/35662 tag cloned as canonical base
+  - Confirmed: TrinityCore official === CWWEB bfa === wowlegions bfa (same commit)
+  - Confirmed: TrinityCore official has ZERO BFA dungeon/raid/zone content
+  - tswow verified as direct git-merge compatible with TrinityCore official
+  - tswow unique content: Gruul's Lair, The Botanica, Vault of Archavon,
+    multivendor, multitrainer, dressnpcs, macOS fixes
+  - AshamaneCore investigation completed — BFA branch never existed
+  - WoWEmulationProject/AshamaneCoreBFA analyzed — 95%+ stub files
+  - GitHub script source map documented (all expansions)
+  - New execution plan: TrinityCore base + tswow git merge + BfaCore port
+  - AGPL v3 license warning documented
+  - BFA_README.txt and CHANGELOG.txt rewritten for revised strategy
+
+v0.1.0-dev  (2026-06-05) — Hybrid Approach (Superseded)
+  - Project initialized for Hybrid Approach
+  - BfaCore-Reforged selected as primary base
+  - tswow selected as feature port source
+  - CWWEB/wowlegions archived as reference
+  - Fork research completed (20+ forks)
+  - Identical repos confirmed (CWWEB === wowlegions on bfa)
+  - AshamaneCore investigation: BFA branch deleted, fork stubs
+  - Documentation created for Hybrid Approach
+  [SUPERSEDED by v0.2.0 on 2026-06-05]
+
+================================================================================
+                            END OF CHANGELOG
+================================================================================
